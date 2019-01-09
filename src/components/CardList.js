@@ -5,6 +5,9 @@ class CardList extends Component {
   state = {
     isInBlack: true,
     isInWhite: false,
+    addingNewCard: false,
+    newCardText: '',
+    error: '',
     cards: [
       {
         text: 'Some text A',
@@ -31,6 +34,7 @@ class CardList extends Component {
     this.setState({
       isInBlack: true,
       isInWhite: false,
+      addingNewCard: false,
     })
   }
 
@@ -38,6 +42,7 @@ class CardList extends Component {
     this.setState({
       isInBlack: false,
       isInWhite: true,
+      addingNewCard: false,
     })
   }
 
@@ -49,9 +54,9 @@ class CardList extends Component {
       </div>
     } else if (this.state.isInWhite) {
       return <div className="card-list-opt">
-      <div onClick={this.showBlack} className="list-option">Black</div>
-      <div onClick={this.showWhite} className="selected-option list-option">White</div>
-    </div>
+        <div onClick={this.showBlack} className="list-option">Black</div>
+        <div onClick={this.showWhite} className="selected-option list-option">White</div>
+      </div>
     }
   }
 
@@ -80,12 +85,93 @@ class CardList extends Component {
     }
   }
 
+  showForm = () => {
+    this.setState({
+      addingNewCard: true,
+    })
+  }
+
+  newCardText = (e) => {
+    this.setState({
+      newCardText: e.target.value
+    })
+  }
+
+  checkIfAdding = () => {
+    if (this.state.addingNewCard && this.state.isInBlack) {
+      return <div className="guide-card-container">
+        <form className="black-card add-card">
+          <textarea name="text" cols="20" rows="13" className="add-black-text" onChange={this.newCardText} />
+          <button type="black" className="add-card-btn" onClick={this.addNewCard}>Add</button>
+          <button className="add-card-btn" onClick={this.discardNewCard}>Discard</button>
+        </form>
+      </div>
+    } else if (this.state.addingNewCard && this.state.isInWhite) {
+      return <div className="guide-card-container">
+      <form className="white-card add-card">
+        <textarea name="text" cols="20" rows="13" className="add-white-text" onChange={this.newCardText} />
+        <button type="white" className="add-card-btn" onClick={this.addNewCard}>Add</button>
+        <button className="add-card-btn" onClick={this.discardNewCard}>Discard</button>
+        <div>{this.state.error}</div>
+      </form>
+    </div>
+    } else {
+      return <div className="add-img-container">
+        <img src={require('../images/add-card.svg')} className="add-card-img" alt="Add new card" onClick={this.showForm} />
+      </div>
+    }
+  }
+
+  addNewCard = (e) => {
+    e.preventDefault()
+
+    if (this.state.newCardText.indexOf('_') >= 0) {
+
+      if (e.target.attributes.type.value === 'white') {
+        this.setState({
+          error: 'White cards cannot have blanks.'
+        })
+  
+      } else {
+
+      let replaced = this.state.newCardText.replace(/_+/, '______')
+      this.state.cards.push({
+        text: replaced,
+        type: e.target.attributes.type.value,
+      })
+      this.setState({
+        addingNewCard: false,
+        error: '',
+      })
+    }
+    } else {
+      this.state.cards.push({
+        text: this.state.newCardText,
+        type: e.target.attributes.type.value,
+      })
+      this.setState({
+        addingNewCard: false,
+        error: '',
+      })
+    }
+  }
+
+  discardNewCard = (e) => {
+    e.preventDefault()
+    this.setState({
+      newCardText: '',
+      addingNewCard: false,
+      error: '',
+    })
+  }
+
   render() {
     return (
       <section>
         {this.displayButtons()}
         <div className="card-cuadricle">
           {this.displayBlackOrWhite()}
+          {this.checkIfAdding()}
         </div>
       </section>
     );

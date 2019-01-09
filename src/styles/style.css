@@ -106,17 +106,51 @@ nav .nav-links {
 
 .card-cuadricle {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.card-cuadricle .add-img-container {
+  height: 390px;
+  display: flex;
+  align-items: center;
+  margin: 20px 20px 0px 20px;
+}
+.card-cuadricle .add-img-container .add-card-img {
+  width: 50px;
+}
+
+/* -- Create Card -- */
+.add-black-text {
+  background-color: #222222;
+  color: #fbfbfb;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.add-white-text {
+  background-color: #fbfbfb;
+  color: #222222;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.add-card-btn {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
 }
 
 /* -- Card -- */
 .guide-card-container {
-  margin: 20px;
+  margin: 20px 20px 0px 20px;
+  height: 390px;
 }
 
 .white-card, .black-card {
   border-radius: 0.25in;
   padding: 20px;
-  width: 250px;
+  width: 270px;
   height: 380px;
   font-weight: bolder;
   font-size: 22px;

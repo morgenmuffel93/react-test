@@ -131,18 +131,55 @@ nav {
 
 .card-cuadricle {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  .add-img-container {
+    height: 390px;
+    display: flex;
+    align-items: center;
+    margin: 20px 20px 0px 20px;
+
+    .add-card-img {
+      width: 50px;
+    }
+  }
+}
+
+/* -- Create Card -- */
+
+.add-black-text {
+  background-color: $almost-black;
+  color: $almost-white;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.add-white-text {
+  background-color: $almost-white;
+  color: $almost-black;
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.add-card-btn {
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  font-size: inherit;
 }
 
 /* -- Card -- */
 
 .guide-card-container {
-  margin: 20px;
+  margin: 20px 20px 0px 20px;
+  height: 390px;
 }
 
 %card-shared {
   border-radius: .25in;
   padding: 20px;
-  width: 250px;
+  width: 270px;
   height: 380px;
   font-weight: bolder;
   font-size: 22px;
