@@ -1,0 +1,138 @@
+/* ---- reset ---- */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Variables ---- */
+/* ---- typography ---- */
+body {
+  color: #222222;
+  background-color: #fbfbfb;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 147%;
+}
+
+p {
+  margin: 0;
+}
+
+/* ---- layout ---- */
+section {
+  width: 100%;
+}
+
+/* ---- components ---- */
+/* -- navbar -- */
+nav {
+  height: 68px;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: #fbfbfb;
+}
+nav .nav-logo {
+  display: flex;
+  width: 420px;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 30px;
+}
+nav .nav-logo .logo-img {
+  width: 50px;
+}
+nav .nav-links {
+  display: flex;
+  justify-content: space-around;
+  width: 410px;
+  font-size: 20px;
+}
+
+/* -- Intro -- */
+.intro-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+}
+.intro-section .intro-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 35px;
+}
+.intro-section .intro-left .intro-text {
+  margin-bottom: 40px;
+}
+.intro-section .intro-left .intro-text.title {
+  font-weight: bold;
+}
+.intro-section .intro-right .intro-img {
+  width: 550px;
+  -webkit-transition: -webkit-transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+}
+.intro-section .intro-right .intro-img:hover {
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
+
+/* -- Card List -- */
+.card-list-opt {
+  margin-top: 40px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+}
+.card-list-opt .selected-option {
+  border-bottom: 1px solid #222222;
+}
+
+.card-cuadricle {
+  display: flex;
+}
+
+/* -- Card -- */
+.guide-card-container {
+  margin: 20px;
+}
+
+.white-card, .black-card {
+  border-radius: 0.25in;
+  padding: 20px;
+  width: 250px;
+  height: 380px;
+  font-weight: bolder;
+  font-size: 22px;
+  word-wrap: break-word;
+}
+
+.black-card {
+  border: 1px solid #222222;
+  background-color: #222222;
+  color: #fbfbfb;
+}
+
+.white-card {
+  border: 1px solid #222222;
+  background-color: #fbfbfb;
+  color: #222222;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,166 @@
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ---- Variables ---- */
+
+$almost-black: rgb(34, 34, 34);
+$almost-white: rgb(251, 251, 251);
+
+/* ---- typography ---- */
+
+body {
+  color: $almost-black;
+  background-color: $almost-white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 147%;
+}
+
+p {
+  margin: 0;
+}
+
+
+
+/* ---- layout ---- */
+
+section {
+  width: 100%;
+}
+
+/* ---- components ---- */
+
+/* -- navbar -- */
+
+nav {
+  height: 68px;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+  background-color: $almost-white;
+
+  .nav-logo {
+    display: flex;
+    width: 420px;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+  
+    .logo-img {
+      width: 50px;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 410px;
+    font-size: 20px;
+  }
+
+}
+
+/* -- Intro -- */
+
+.intro-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+
+  .intro-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 35px;
+
+    .intro-text {
+      margin-bottom: 40px;
+    }
+
+    .intro-text.title {
+      font-weight: bold;
+    }
+  }
+
+  .intro-right {
+    .intro-img {
+      width: 550px;
+      -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+    }
+    .intro-img:hover {
+      -webkit-transform: rotate(10deg);
+              transform: rotate(10deg);
+    }
+  }
+}
+
+
+/* -- Card List -- */
+
+.card-list-opt {
+  margin-top: 40px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+
+  .selected-option {
+    border-bottom: 1px solid $almost-black;
+  }
+}
+
+.card-cuadricle {
+  display: flex;
+}
+
+/* -- Card -- */
+
+.guide-card-container {
+  margin: 20px;
+}
+
+%card-shared {
+  border-radius: .25in;
+  padding: 20px;
+  width: 250px;
+  height: 380px;
+  font-weight: bolder;
+  font-size: 22px;
+  word-wrap: break-word;
+}
+
+.black-card {
+  @extend %card-shared;
+
+  border: 1px solid $almost-black;
+  background-color: $almost-black;
+  color: $almost-white;
+}
+
+.white-card {
+  @extend %card-shared;
+
+  border: 1px solid $almost-black;
+  background-color: $almost-white;
+  color: $almost-black;
+}
