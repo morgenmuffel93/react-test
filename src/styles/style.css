@@ -100,6 +100,9 @@ nav .nav-links {
   font-size: 25px;
   font-weight: bold;
 }
+.card-list-opt .list-option:hover {
+  cursor: pointer;
+}
 .card-list-opt .selected-option {
   border-bottom: 1px solid #222222;
 }
@@ -118,8 +121,11 @@ nav .nav-links {
 .card-cuadricle .add-img-container .add-card-img {
   width: 50px;
 }
+.card-cuadricle .add-img-container .add-card-img:hover {
+  cursor: pointer;
+}
 
-/* -- Create Card -- */
+/* -- Create and Edit Card -- */
 .add-black-text {
   background-color: #222222;
   color: #fbfbfb;
@@ -134,11 +140,18 @@ nav .nav-links {
   font-size: 18px;
 }
 
+.add-card, .edit-card {
+  display: flex;
+  flex-direction: column;
+}
+
 .add-card-btn {
   border: none;
   background-color: inherit;
   color: inherit;
   font-size: inherit;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 /* -- Card -- */
@@ -155,6 +168,17 @@ nav .nav-links {
   font-weight: bolder;
   font-size: 22px;
   word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+.white-card .white-card-edit-icon, .black-card .black-card-edit-icon {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .black-card {
@@ -162,8 +186,72 @@ nav .nav-links {
   background-color: #222222;
   color: #fbfbfb;
 }
+.black-card .black-card-edit-icon {
+  background-image: url(../images/edit_for_black_cards.svg);
+  background-repeat: no-repeat;
+}
 
 .white-card {
+  border: 1px solid #222222;
+  background-color: #fbfbfb;
+  color: #222222;
+}
+.white-card .white-card-edit-icon {
+  background-image: url(../images/edit_for_white_cards.svg);
+}
+
+.more-btn {
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: 18px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  height: 300px;
+}
+
+/* -- Card Details -- */
+.card-details-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.card-details-container .card-details-left {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-details-container .card-details-left .back-img {
+  width: 50px;
+  cursor: pointer;
+}
+.card-details-container .card-details-right {
+  width: 48%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-row: auto auto;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+.card-details-container .card-details-right .card-details-white-opt {
+  border-radius: 0.25in;
+  padding: 20px;
+  width: 180px;
+  height: 240px;
+  font-weight: bolder;
+  font-size: 18px;
+  word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
   border: 1px solid #222222;
   background-color: #fbfbfb;
   color: #222222;

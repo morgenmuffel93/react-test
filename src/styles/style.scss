@@ -124,6 +124,9 @@ nav {
   font-size: 25px;
   font-weight: bold;
 
+  .list-option:hover {
+    cursor: pointer;
+  }
   .selected-option {
     border-bottom: 1px solid $almost-black;
   }
@@ -143,10 +146,13 @@ nav {
     .add-card-img {
       width: 50px;
     }
+    .add-card-img:hover {
+      cursor: pointer;
+    }
   }
 }
 
-/* -- Create Card -- */
+/* -- Create and Edit Card -- */
 
 .add-black-text {
   background-color: $almost-black;
@@ -162,12 +168,20 @@ nav {
   font-size: 18px;
 }
 
+.add-card,.edit-card {
+  display: flex;
+  flex-direction: column;
+}
+
 .add-card-btn {
   border: none;
   background-color: inherit;
   color: inherit;
   font-size: inherit;
+  cursor: pointer;
+  margin-top: 10px;
 }
+
 
 /* -- Card -- */
 
@@ -184,6 +198,17 @@ nav {
   font-weight: bolder;
   font-size: 22px;
   word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+}
+
+%card-icon-shared {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .black-card {
@@ -192,6 +217,12 @@ nav {
   border: 1px solid $almost-black;
   background-color: $almost-black;
   color: $almost-white;
+
+  .black-card-edit-icon {
+    @extend %card-icon-shared;
+    background-image: url(../images/edit_for_black_cards.svg);
+    background-repeat: no-repeat;
+  }
 }
 
 .white-card {
@@ -200,4 +231,71 @@ nav {
   border: 1px solid $almost-black;
   background-color: $almost-white;
   color: $almost-black;
+
+  .white-card-edit-icon {
+    @extend %card-icon-shared;
+    background-image: url(../images/edit_for_white_cards.svg)
+  }
+}
+
+.more-btn {
+  cursor: pointer;
+  align-self: flex-end;
+  font-size: 18px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-text {
+  height: 300px;
+}
+
+/* -- Card Details -- */
+
+.card-details-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .card-details-left {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .back-img {
+      width: 50px;
+      cursor: pointer;
+    }
+  }
+
+  .card-details-right {
+    width: 48%;
+    display:grid;
+    grid-template-columns: 50% 50%;
+    grid-row: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+
+    .card-details-white-opt {
+      border-radius: .25in;
+      padding: 20px;
+      width: 180px;
+      height: 240px;
+      font-weight: bolder;
+      font-size: 18px;
+      word-wrap: break-word;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid $almost-black;
+      background-color: $almost-white;
+      color: $almost-black;
+    }
+  }
 }

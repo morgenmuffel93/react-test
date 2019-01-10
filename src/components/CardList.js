@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import Card from './Card'
+import CardDetails from './CardDetails'
 
 class CardList extends Component {
   state = {
     isInBlack: true,
     isInWhite: false,
     addingNewCard: false,
+    showingCardDetails: false,
+    detailedCardIndex: null,
     newCardText: '',
     error: '',
     cards: [
       {
-        text: 'Some text A',
+        text: 'Dying',
         type: 'white',
       },
       {
-        text: 'Some text B _____ more text more text more text',
+        text: 'Justin Bieber',
         type: 'white',
       },
       {
-        text: 'Some text C _____ more text more text _____ more text more text',
+        text: 'Justin Bieber2',
+        type: 'white',
+      },
+      {
+        text: 'Justin Bieber3',
+        type: 'white',
+      },
+      {
+        text: 'This shouldnt show',
+        type: 'white',
+      },
+      {
+        text: 'During my time at Ironhack, I have felt like ______.',
         type: 'black',
       },
     ]
-  }
-
-  componentDidMount() {
-    this.setState({
-      isLoading: false,
-    })
   }
 
   showBlack = () => {
@@ -60,6 +69,11 @@ class CardList extends Component {
     }
   }
 
+  editCard = (data) => {
+    let index = data.cardIndex
+    this.state.cards[index].text = data.cardText;
+    this.forceUpdate()
+  }
 
   displayBlackOrWhite = () => {
     if (this.state.isInBlack) {
@@ -67,7 +81,7 @@ class CardList extends Component {
         this.state.cards.map((card, index) => {
           if (card.type === 'black') {
             return <div key={index} className="guide-card-container">
-              <Card info={card} index={index} class="black-card" />
+              <Card info={card} index={index} class="black-card" onSubmit={this.editCard} onDetails={this.showDetails} />
             </div>
           }
         })
@@ -77,7 +91,7 @@ class CardList extends Component {
         this.state.cards.map((card, index) => {
           if (card.type === 'white') {
             return <div key={index} className="guide-card-container">
-              <Card info={card} index={index} class="white-card" />
+              <Card info={card} index={index} class="white-card" onSubmit={this.editCard} onDetails={this.showDetails} />
             </div>
           }
         })
@@ -108,13 +122,13 @@ class CardList extends Component {
       </div>
     } else if (this.state.addingNewCard && this.state.isInWhite) {
       return <div className="guide-card-container">
-      <form className="white-card add-card">
-        <textarea name="text" cols="20" rows="13" className="add-white-text" onChange={this.newCardText} />
-        <button type="white" className="add-card-btn" onClick={this.addNewCard}>Add</button>
-        <button className="add-card-btn" onClick={this.discardNewCard}>Discard</button>
-        <div>{this.state.error}</div>
-      </form>
-    </div>
+        <form className="white-card add-card">
+          <textarea name="text" cols="20" rows="13" className="add-white-text" onChange={this.newCardText} />
+          <button type="white" className="add-card-btn" onClick={this.addNewCard}>Add</button>
+          <button className="add-card-btn" onClick={this.discardNewCard}>Discard</button>
+          <div>{this.state.error}</div>
+        </form>
+      </div>
     } else {
       return <div className="add-img-container">
         <img src={require('../images/add-card.svg')} className="add-card-img" alt="Add new card" onClick={this.showForm} />
@@ -131,19 +145,19 @@ class CardList extends Component {
         this.setState({
           error: 'White cards cannot have blanks.'
         })
-  
+
       } else {
 
-      let replaced = this.state.newCardText.replace(/_+/, '______')
-      this.state.cards.push({
-        text: replaced,
-        type: e.target.attributes.type.value,
-      })
-      this.setState({
-        addingNewCard: false,
-        error: '',
-      })
-    }
+        let replaced = this.state.newCardText.replace(/_+/, '______')
+        this.state.cards.push({
+          text: replaced,
+          type: e.target.attributes.type.value,
+        })
+        this.setState({
+          addingNewCard: false,
+          error: '',
+        })
+      }
     } else {
       this.state.cards.push({
         text: this.state.newCardText,
@@ -165,16 +179,45 @@ class CardList extends Component {
     })
   }
 
-  render() {
+  showDetails = (index) => {
+    this.setState({
+      showingCardDetails: true,
+      detailedCardIndex: index,
+    })
+  }
+
+  retrieveCardInfo = () => {
+    let selected = this.state.cards.slice(0, 4);
+    console.log(this.state.detailedCardIndex)
     return (
-      <section>
-        {this.displayButtons()}
-        <div className="card-cuadricle">
-          {this.displayBlackOrWhite()}
-          {this.checkIfAdding()}
-        </div>
-      </section>
-    );
+      <div>
+        <CardDetails cardInfo={this.state.cards[this.state.detailedCardIndex]} cardList={selected} handleBackButton={this.showList}/>
+      </div>
+    )
+  }
+
+  showList = () => {
+    this.setState({
+      showingCardDetails: false,
+      detailedCardIndex: null,
+    })
+  }
+
+  render() {
+    if (this.state.showingCardDetails && this.state.detailedCardIndex) {
+      console.log(this.state.detailedCardIndex)
+      return this.retrieveCardInfo()
+    } else {
+      return (
+        <section>
+          {this.displayButtons()}
+          <div className="card-cuadricle">
+            {this.displayBlackOrWhite()}
+            {this.checkIfAdding()}
+          </div>
+        </section>
+      )
+    }
   }
 }
 
